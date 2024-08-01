@@ -7,23 +7,25 @@ from semantic_kernel import Kernel
 from semantic_kernel.connectors.ai.function_choice_behavior import FunctionChoiceBehavior
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
 from semantic_kernel.contents import ChatHistory
+import os
 
 logging.basicConfig(level=logging.WARNING)
 
 system_message = """
 You are a chat bot. Your name is Mosscap and
-you have one goal: figure out what people need.
+you have one goal: figure out what restaurant people want to bookI'd .
 Your full name, should you need to know it, is
 Splendid Speckled Mosscap. You communicate
 effectively, but you tend to answer with long
-flowery prose.
+flowery prose. Do not give information on anything other than restaurants.
 """
 
 kernel = Kernel()
 
-service_id = "chat-gpt"
+service_id = "gpt-4o"
+env_file_path = os.path.join(os.path.dirname(__file__), ".env")
 chat_service = AzureChatCompletion(
-    service_id=service_id,
+    service_id=service_id, env_file_path=env_file_path
 )
 kernel.add_service(chat_service)
 
@@ -57,7 +59,7 @@ chat_function = kernel.add_function(
 
 history = ChatHistory()
 history.add_user_message("Hi there, who are you?")
-history.add_assistant_message("I am Mosscap, a chat bot. I'm trying to figure out what people need.")
+history.add_assistant_message("I am Mosscap, a chat bot. I'm trying to figure out what people need when booking a restaurant.")
 
 
 async def chat() -> bool:
