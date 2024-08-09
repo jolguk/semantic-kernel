@@ -1,0 +1,6 @@
+based on {{$input}}, 
+write a creative email explaining why you can't attend work on {{$input}} with {{$emailAddress}} as the recipient.
+Be really creative and humorous about the reason why you can't attend work.
+set the subject of the email to {{$input}}
+
+Return it in JSON using the following format: { "To": "emailAddress", "subject": "the subject of the email", "content": "the content of the email" }

@@ -1,0 +1,5 @@
+Create a book cover for the given book. Be creative and be funny. Let your imagination run wild.
+
+
+
+Cover:{{$input}}
